@@ -4,7 +4,9 @@
   "description": "Action to generate env files from github repository secret keys",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "build": "ncc build index.js --license licenses.txt",
+    "deploy": "np --no-publish"
   },
   "repository": {
     "type": "git",
@@ -22,7 +24,9 @@
     "@actions/github": "^4.0.0"
   },
   "devDependencies": {
+    "@vercel/ncc": "^0.27.0",
     "chai": "^4.2.0",
-    "mocha": "^8.2.1"
+    "mocha": "^8.2.1",
+    "np": "^7.2.0"
   }
 }
