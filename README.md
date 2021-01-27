@@ -2,9 +2,9 @@
 
 ## Inputs
 
-### secrets (_required_)
+### secrets (*required*)
 
-### secrets\*env (_required_)
+### secrets_env (*required*)
 
 `all` | `production` | `development`
 
