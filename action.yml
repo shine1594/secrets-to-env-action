@@ -8,10 +8,12 @@ inputs:
     description: ""
     required: true
   prefix_dev:
-    description: "__DEV__"
+    description: ""
+    default: "__DEV__"
     required: false
   file_name_dev:
-    description: ".env.dev"
+    description: ""
+    default: ".env.dev"
     required: false
   prefix_prod:
     description: ""
@@ -23,8 +25,8 @@ inputs:
     required: false
   override_prod:
     description: ""
-    required: false
     default: "false"
+    required: false
 runs:
   using: "node12"
   main: "dist/index.js"
