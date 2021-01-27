@@ -1,0 +1,29 @@
+{
+  "name": "secrets-to-env-action",
+  "version": "1.0.0",
+  "description": "Action to generate env files from github repository secret keys",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shine1594/secrets-to-env-action.git"
+  },
+  "keywords": [],
+  "author": "DoHyeong Lee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shine1594/secrets-to-env-action/issues"
+  },
+  "homepage": "https://github.com/shine1594/secrets-to-env-action#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1"
+  }
+}
