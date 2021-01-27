@@ -1,30 +1,30 @@
-name: 'Secrets to env'
-description: 'Generate env files from repository secrets'
+name: "Secrets to env"
+description: "Generate env files from repository secrets"
 inputs:
   secrets:
-    description: 'json string of github repository secrets'
+    description: "json string of github repository secrets"
     required: true
   env:
-    description: ''
+    description: ""
     required: true
   prefix_dev:
-    description: '__DEV__'
+    description: "__DEV__"
     required: false
   file_name_dev:
-    description: '.env.dev'
+    description: ".env.dev"
     required: false
   prefix_prod:
-    description: ''
-    default: '__PROD__'
+    description: ""
+    default: "__PROD__"
     required: false
   file_name_prod:
-    description: ''
-    default: '.env'
+    description: ""
+    default: ".env"
     required: false
   override_prod:
-    description: ''
+    description: ""
     required: false
-    default: 'false'
+    default: "false"
 runs:
-  using: 'node14'
-  main: 'index.js'
+  using: "node12"
+  main: "index.js"
