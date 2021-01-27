@@ -1,27 +1,27 @@
-export const DEFAULT_PREFIX_DEV = "__DEV__";
-export const DEFAULT_PREFIX_PROD = "__PROD__";
-export const DEFAULT_FILE_NAME_DEV = ".env.dev";
-export const DEFAULT_FILE_NAME_PROD = ".env";
+const DEFAULT_PREFIX_DEV = "__DEV__";
+const DEFAULT_PREFIX_PROD = "__PROD__";
+const DEFAULT_FILE_NAME_DEV = ".env.dev";
+const DEFAULT_FILE_NAME_PROD = ".env";
 
-export const parseSecrets = (prefix, secrets) =>
+const parseSecrets = (prefix, secrets) =>
   Object.fromEntries(
     Object.entries(secrets)
       .filter(([key]) => key.startsWith(prefix))
       .map(([k, v]) => [k.replace(prefix, ""), v])
   );
 
-export const toEnvString = (obj) =>
+const toEnvString = (obj) =>
   Object.entries(obj)
     .map(([k, v]) => `${k}=${v}`)
     .sort()
     .join("\n");
 
-export const makeSuccessMessage = (file_names) =>
+const makeSuccessMessage = (file_names) =>
   `${file_names.map((n) => `'${n}'`).join(" and ")} file${
     file_names.length > 1 ? "s" : ""
   } created successfully.`;
 
-export const main = ({
+const main = ({
   secrets,
   env,
   override_prod = false,
@@ -46,4 +46,15 @@ export const main = ({
     ]);
   }
   return files;
+};
+
+module.exports = {
+  DEFAULT_PREFIX_DEV,
+  DEFAULT_PREFIX_PROD,
+  DEFAULT_FILE_NAME_DEV,
+  DEFAULT_FILE_NAME_PROD,
+  parseSecrets,
+  toEnvString,
+  makeSuccessMessage,
+  main,
 };
