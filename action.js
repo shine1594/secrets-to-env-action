@@ -23,7 +23,7 @@ const makeSuccessMessage = (file_names) =>
 
 const main = ({
   secrets,
-  env,
+  secrets_env,
   override_prod = false,
   file_name_prod = DEFAULT_FILE_NAME_PROD,
   file_name_dev = DEFAULT_FILE_NAME_DEV,
@@ -33,10 +33,10 @@ const main = ({
   const secrets_obj = JSON.parse(secrets);
   const env_prod_obj = parseSecrets(prefix_prod, secrets_obj);
   const files = [];
-  if (env === "production" || env === "all") {
+  if (secrets_env === "production" || secrets_env === "all") {
     files.push([file_name_prod, toEnvString(env_prod_obj)]);
   }
-  if (env === "development" || env === "all") {
+  if (secrets_env === "development" || secrets_env === "all") {
     const env_dev_obj = parseSecrets(prefix_dev, secrets_obj);
     files.push([
       file_name_dev,

@@ -85,7 +85,9 @@ describe("toEnvString", function () {
 
 describe("main", function () {
   it("given all env and default options", function () {
-    expect(main({ secrets: JSON.stringify(secrets), env: "all" })).to.eql([
+    expect(
+      main({ secrets: JSON.stringify(secrets), secrets_env: "all" })
+    ).to.eql([
       [DEFAULT_FILE_NAME_PROD, prod_env_string],
       [DEFAULT_FILE_NAME_DEV, dev_env_string],
     ]);
@@ -93,7 +95,7 @@ describe("main", function () {
 
   it("given only production env and default options", function () {
     expect(
-      main({ secrets: JSON.stringify(secrets), env: "production" })
+      main({ secrets: JSON.stringify(secrets), secrets_env: "production" })
     ).to.eql([[DEFAULT_FILE_NAME_PROD, prod_env_string]]);
   });
 
@@ -101,7 +103,7 @@ describe("main", function () {
     expect(
       main({
         secrets: JSON.stringify(secrets),
-        env: "all",
+        secrets_env: "all",
         prefix_prod: "__MY__",
         file_name_prod: "my_prod_env.txt",
       })
@@ -115,7 +117,7 @@ describe("main", function () {
     expect(
       main({
         secrets: JSON.stringify(secrets),
-        env: "all",
+        secrets_env: "all",
         file_name_prod: "my_prod_env.txt",
         override_prod: "true",
       })
@@ -129,7 +131,7 @@ describe("main", function () {
     expect(
       main({
         secrets: JSON.stringify(secrets),
-        env: "all",
+        secrets_env: "all",
         prefix_dev: "__MY__",
         file_name_dev: "my_dev_env.txt",
       })
@@ -143,7 +145,7 @@ describe("main", function () {
     expect(
       main({
         secrets: JSON.stringify(secrets),
-        env: "production",
+        secrets_env: "production",
         prefix_prod: "__MY__",
         file_name_prod: "my_prod_env.txt",
       })
@@ -154,7 +156,7 @@ describe("main", function () {
     expect(
       main({
         secrets: JSON.stringify(secrets),
-        env: "development",
+        secrets_env: "development",
         prefix_dev: "__MY__",
         file_name_dev: "my_dev_env.txt",
       })
@@ -165,7 +167,7 @@ describe("main", function () {
     expect(
       main({
         secrets: JSON.stringify(secrets),
-        env: "development",
+        secrets_env: "development",
         prefix_dev: "__MY__",
         file_name_dev: "my_dev_env.txt",
         override_prod: "true",

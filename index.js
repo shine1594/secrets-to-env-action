@@ -4,7 +4,7 @@ const { main, makeSuccessMessage } = require("./action.js");
 
 const input_keys = [
   "secrets",
-  "env",
+  "secrets_env",
   "prefix_prod",
   "prefix_dev",
   "file_name_prod",
