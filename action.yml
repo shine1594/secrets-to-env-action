@@ -4,7 +4,7 @@ inputs:
   secrets:
     description: "json string of github repository secrets"
     required: true
-  env:
+  secrets_env:
     description: ""
     required: true
   prefix_dev:
