@@ -2,41 +2,54 @@
 
 ## Inputs
 
-### secrets (*required*)
-### env (*required*)
+### secrets (_required_)
+
+### secrets*env (_required_)
+
 `all` | `production` | `development`
+
 ### prefix_prod
+
 default: `'__PROD__'`
+
 ### prefix_dev
+
 default: `'__DEV__'`
+
 ### file_name_prod
+
 default: `'.env'`
+
 ### file_name_dev
+
 default: `'.env.dev'`
+
 ### override_prod
+
 default: `'false'`\
 If this value is 'true', It will use prod-secrets as base when generating `.env.dev` and overwrite them by dev-secrets.
 
 ## Example usage
+
 ```
-uses: actions/secrets-to-env-action@v1
+uses: shine1594/secrets-to-env-action@1.4.0
 with:
   secrets: '${{ toJSON(secrets) }}'
-  env: 'all'
+  secrets_env: 'all'
 ```
 
 ```
-uses: actions/secrets-to-env-action@v1
+uses: shine1594/secrets-to-env-action@1.4.0
 with:
   secrets: '${{ toJSON(secrets) }}'
-  env: 'production'
+  secrets_env: 'production'
   file_name_prod: 'my_production_env.txt'
 ```
 
 ```
-uses: actions/secrets-to-env-action@v1
+uses: shine1594/secrets-to-env-action@1.4.0
 with:
   secrets: '${{ toJSON(secrets) }}'
-  env: 'production'
+  secrets_env: 'production'
   prefix_prod: '__MY_PROD_PREFIX__'
 ```
