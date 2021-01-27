@@ -4,7 +4,7 @@
 
 ### secrets (_required_)
 
-### secrets*env (_required_)
+### secrets\*env (_required_)
 
 `all` | `production` | `development`
 
@@ -32,14 +32,14 @@ If this value is 'true', It will use prod-secrets as base when generating `.env.
 ## Example usage
 
 ```
-uses: shine1594/secrets-to-env-action@1.4.0
+uses: shine1594/secrets-to-env-action@master
 with:
   secrets: '${{ toJSON(secrets) }}'
   secrets_env: 'all'
 ```
 
 ```
-uses: shine1594/secrets-to-env-action@1.4.0
+uses: shine1594/secrets-to-env-action@master
 with:
   secrets: '${{ toJSON(secrets) }}'
   secrets_env: 'production'
@@ -47,7 +47,7 @@ with:
 ```
 
 ```
-uses: shine1594/secrets-to-env-action@1.4.0
+uses: shine1594/secrets-to-env-action@master
 with:
   secrets: '${{ toJSON(secrets) }}'
   secrets_env: 'production'
