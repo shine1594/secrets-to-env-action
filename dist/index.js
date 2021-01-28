@@ -91,12 +91,6 @@ const input_keys = [
 ];
 
 const inputs = input_keys.map((k) => [k, core.getInput(k)]);
-
-const overwrite_prod = inputs.find(([k]) => k === "overwrite_prod")[1];
-core.info(inputs);
-core.info(overwrite_prod);
-core.info(typeof overwrite_prod);
-
 const files = main(Object.fromEntries(inputs));
 const file_names = files.map(([file_name]) => file_name);
 
