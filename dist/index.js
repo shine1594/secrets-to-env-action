@@ -31,7 +31,7 @@ const makeSuccessMessage = (file_names) =>
 const main = ({
   secrets,
   secrets_env,
-  overwrite_prod = false,
+  overwrite_prod = "false",
   file_name_prod = DEFAULT_FILE_NAME_PROD,
   file_name_dev = DEFAULT_FILE_NAME_DEV,
   prefix_prod = DEFAULT_PREFIX_PROD,
@@ -48,7 +48,11 @@ const main = ({
     files.push([
       file_name_dev,
       toEnvString(
-        Object.assign({}, overwrite_prod ? env_prod_obj : {}, env_dev_obj)
+        Object.assign(
+          {},
+          overwrite_prod === "true" ? env_prod_obj : {},
+          env_dev_obj
+        )
       ),
     ]);
   }
