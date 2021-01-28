@@ -113,13 +113,13 @@ describe("main", function () {
     ]);
   });
 
-  it("given all env, custom prod file name and override prod env", function () {
+  it("given all env, custom prod file name and overwrite prod env", function () {
     expect(
       main({
         secrets: JSON.stringify(secrets),
         secrets_env: "all",
         file_name_prod: "my_prod_env.txt",
-        override_prod: "true",
+        overwrite_prod: "true",
       })
     ).to.eql([
       ["my_prod_env.txt", prod_env_string],
@@ -163,14 +163,14 @@ describe("main", function () {
     ).to.eql([["my_dev_env.txt", my_env_string]]);
   });
 
-  it("given dev env, custom dev prefix, custom dev file name and override prod env", function () {
+  it("given dev env, custom dev prefix, custom dev file name and overwrite prod env", function () {
     expect(
       main({
         secrets: JSON.stringify(secrets),
         secrets_env: "development",
         prefix_dev: "__MY__",
         file_name_dev: "my_dev_env.txt",
-        override_prod: "true",
+        overwrite_prod: "true",
       })
     ).to.eql([["my_dev_env.txt", merged_my_env_string]]);
   });

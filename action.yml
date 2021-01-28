@@ -23,7 +23,7 @@ inputs:
     description: ""
     default: ".env"
     required: false
-  override_prod:
+  overwrite_prod:
     description: ""
     default: "false"
     required: false
