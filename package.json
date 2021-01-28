@@ -1,6 +1,6 @@
 {
   "name": "secrets-to-env-action",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Action to generate env files from github repository secret keys",
   "main": "index.js",
   "scripts": {
