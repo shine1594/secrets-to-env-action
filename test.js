@@ -163,6 +163,18 @@ describe("main", function () {
     ).to.eql([["my_dev_env.txt", my_env_string]]);
   });
 
+  it("given dev env, custom dev prefix, custom dev file name and not overwrite prod env", function () {
+    expect(
+      main({
+        secrets: JSON.stringify(secrets),
+        secrets_env: "development",
+        prefix_dev: "__MY__",
+        file_name_dev: "my_dev_env.txt",
+        overwrite_prod: "false",
+      })
+    ).to.eql([["my_dev_env.txt", my_env_string]]);
+  });
+
   it("given dev env, custom dev prefix, custom dev file name and overwrite prod env", function () {
     expect(
       main({
