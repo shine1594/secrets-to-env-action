@@ -87,16 +87,23 @@ const input_keys = [
   "prefix_dev",
   "file_name_prod",
   "file_name_dev",
+  "overwrite_prod",
 ];
 
-const files = main(
-  Object.fromEntries(input_keys.map((k) => [k, core.getInput(k)]))
-);
+const inputs = input_keys.map((k) => [k, core.getInput(k)]);
+
+const overwrite_prod = inputs.find(([k]) => k === "overwrite_prod")[1];
+core.info(inputs);
+core.info(overwrite_prod);
+core.info(typeof overwrite_prod);
+
+const files = main(Object.fromEntries(inputs));
+const file_names = files.map(([file_name]) => file_name);
 
 Promise.all(
   files.map(([file_name, env_string]) => fs.writeFile(file_name, env_string))
 )
-  .then(() => makeSuccessMessage(files.map(([file_name]) => file_name)))
+  .then(() => makeSuccessMessage(file_names))
   .then(console.log)
   .catch((err) => core.setFailed(err.message));
 
