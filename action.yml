@@ -15,6 +15,14 @@ inputs:
     description: ""
     default: ".env.dev"
     required: false
+  prefix_stag:
+    description: ""
+    default: "__STAG__"
+    required: false
+  file_name_stag:
+    description: ""
+    default: ".env.stag"
+    required: false
   prefix_prod:
     description: ""
     default: "__PROD__"
@@ -28,5 +36,5 @@ inputs:
     default: "false"
     required: false
 runs:
-  using: "node12"
+  using: "node16"
   main: "dist/index.js"

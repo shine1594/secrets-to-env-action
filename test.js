@@ -1,8 +1,10 @@
 const { expect } = require("chai");
 const {
   DEFAULT_PREFIX_DEV,
+  DEFAULT_PREFIX_STAG,
   DEFAULT_PREFIX_PROD,
   DEFAULT_FILE_NAME_PROD,
+  DEFAULT_FILE_NAME_STAG,
   DEFAULT_FILE_NAME_DEV,
   main,
   parseSecrets,
@@ -13,9 +15,15 @@ const secrets = {
   __PROD__SECRET_KEY1: "aaa",
   __PROD__SECRET_KEY2: "bbb",
   __PROD__SECRET_KEY3: "zzz",
+
+  __STAG__SECRET_KEY1: "lll",
+  __STAG__SECRET_KEY4: "ooo",
+  __STAG__SECRET_KEY6: "ppp",
+
   __DEV__SECRET_KEY1: "ccc",
   __DEV__SECRET_KEY2: "ddd",
   __DEV__SECRET_KEY4: "yyy",
+
   __MY__SECRET_KEY1: "eee",
   __MY__SECRET_KEY2: "fff",
   __MY__SECRET_KEY5: "xxx",
@@ -25,6 +33,12 @@ const prod_secret_obj = {
   SECRET_KEY1: "aaa",
   SECRET_KEY2: "bbb",
   SECRET_KEY3: "zzz",
+};
+
+const stag_secret_obj = {
+  SECRET_KEY1: "lll",
+  SECRET_KEY4: "ooo",
+  SECRET_KEY6: "ppp",
 };
 
 const dev_secret_obj = {
@@ -54,14 +68,19 @@ const merged_my_secret_obj = {
 };
 
 const prod_env_string = `SECRET_KEY1=aaa\nSECRET_KEY2=bbb\nSECRET_KEY3=zzz`;
+const stag_env_string = `SECRET_KEY1=lll\nSECRET_KEY4=ooo\nSECRET_KEY6=ppp`;
 const dev_env_string = `SECRET_KEY1=ccc\nSECRET_KEY2=ddd\nSECRET_KEY4=yyy`;
 const my_env_string = `SECRET_KEY1=eee\nSECRET_KEY2=fff\nSECRET_KEY5=xxx`;
 const merged_dev_env_string = `SECRET_KEY1=ccc\nSECRET_KEY2=ddd\nSECRET_KEY3=zzz\nSECRET_KEY4=yyy`;
+const merged_stag_env_string = `SECRET_KEY1=lll\nSECRET_KEY2=bbb\nSECRET_KEY3=zzz\nSECRET_KEY4=ooo\nSECRET_KEY6=ppp`;
 const merged_my_env_string = `SECRET_KEY1=eee\nSECRET_KEY2=fff\nSECRET_KEY3=zzz\nSECRET_KEY5=xxx`;
 
 describe("parseSecrets", function () {
   it("default prod prefix", function () {
     expect(parseSecrets(DEFAULT_PREFIX_PROD, secrets)).to.eql(prod_secret_obj);
+  });
+  it("default stag prefix", function () {
+    expect(parseSecrets(DEFAULT_PREFIX_STAG, secrets)).to.eql(stag_secret_obj);
   });
   it("default dev prefix", function () {
     expect(parseSecrets(DEFAULT_PREFIX_DEV, secrets)).to.eql(dev_secret_obj);
@@ -74,6 +93,9 @@ describe("parseSecrets", function () {
 describe("toEnvString", function () {
   it("prod", function () {
     expect(toEnvString(prod_secret_obj)).to.eql(prod_env_string);
+  });
+  it("stag", function () {
+    expect(toEnvString(stag_secret_obj)).to.eql(stag_env_string);
   });
   it("dev", function () {
     expect(toEnvString(dev_secret_obj)).to.eql(dev_env_string);
@@ -89,6 +111,7 @@ describe("main", function () {
       main({ secrets: JSON.stringify(secrets), secrets_env: "all" })
     ).to.eql([
       [DEFAULT_FILE_NAME_PROD, prod_env_string],
+      [DEFAULT_FILE_NAME_STAG, stag_env_string],
       [DEFAULT_FILE_NAME_DEV, dev_env_string],
     ]);
   });
@@ -109,6 +132,7 @@ describe("main", function () {
       })
     ).to.eql([
       ["my_prod_env.txt", my_env_string],
+      [DEFAULT_FILE_NAME_STAG, stag_env_string],
       [DEFAULT_FILE_NAME_DEV, dev_env_string],
     ]);
   });
@@ -123,6 +147,7 @@ describe("main", function () {
       })
     ).to.eql([
       ["my_prod_env.txt", prod_env_string],
+      [DEFAULT_FILE_NAME_STAG, merged_stag_env_string],
       [DEFAULT_FILE_NAME_DEV, merged_dev_env_string],
     ]);
   });
@@ -137,6 +162,7 @@ describe("main", function () {
       })
     ).to.eql([
       [DEFAULT_FILE_NAME_PROD, prod_env_string],
+      [DEFAULT_FILE_NAME_STAG, stag_env_string],
       ["my_dev_env.txt", my_env_string],
     ]);
   });

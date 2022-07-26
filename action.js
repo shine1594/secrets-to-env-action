@@ -1,6 +1,8 @@
 const DEFAULT_PREFIX_DEV = "__DEV__";
 const DEFAULT_PREFIX_PROD = "__PROD__";
+const DEFAULT_PREFIX_STAG = "__STAG__";
 const DEFAULT_FILE_NAME_DEV = ".env.dev";
+const DEFAULT_FILE_NAME_STAG = ".env.stag";
 const DEFAULT_FILE_NAME_PROD = ".env";
 
 const parseSecrets = (prefix, secrets) =>
@@ -26,8 +28,10 @@ const main = ({
   secrets_env,
   overwrite_prod = "false",
   file_name_prod = DEFAULT_FILE_NAME_PROD,
+  file_name_stag = DEFAULT_FILE_NAME_STAG,
   file_name_dev = DEFAULT_FILE_NAME_DEV,
   prefix_prod = DEFAULT_PREFIX_PROD,
+  prefix_stag = DEFAULT_PREFIX_STAG,
   prefix_dev = DEFAULT_PREFIX_DEV,
 }) => {
   const secrets_obj = JSON.parse(secrets);
@@ -36,6 +40,21 @@ const main = ({
   if (secrets_env === "production" || secrets_env === "all") {
     files.push([file_name_prod, toEnvString(env_prod_obj)]);
   }
+
+  if (secrets_env === "stage" || secrets_env === "all") {
+    const env_stag_obj = parseSecrets(prefix_stag, secrets_obj);
+    files.push([
+      file_name_stag,
+      toEnvString(
+        Object.assign(
+          {},
+          overwrite_prod === "true" ? env_prod_obj : {},
+          env_stag_obj
+        )
+      ),
+    ]);
+  }
+
   if (secrets_env === "development" || secrets_env === "all") {
     const env_dev_obj = parseSecrets(prefix_dev, secrets_obj);
     files.push([
@@ -54,8 +73,10 @@ const main = ({
 
 module.exports = {
   DEFAULT_PREFIX_DEV,
+  DEFAULT_PREFIX_STAG,
   DEFAULT_PREFIX_PROD,
   DEFAULT_FILE_NAME_DEV,
+  DEFAULT_FILE_NAME_STAG,
   DEFAULT_FILE_NAME_PROD,
   parseSecrets,
   toEnvString,
