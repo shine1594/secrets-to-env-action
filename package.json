@@ -20,12 +20,12 @@
   },
   "homepage": "https://github.com/shine1594/secrets-to-env-action#readme",
   "dependencies": {
-    "@actions/core": "^1.2.6"
+    "@actions/core": "^1.9.0"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.27.0",
-    "chai": "^4.2.0",
-    "mocha": "^8.2.1",
-    "np": "^7.2.0"
+    "@vercel/ncc": "^0.34.0",
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0",
+    "np": "^7.6.2"
   }
 }
