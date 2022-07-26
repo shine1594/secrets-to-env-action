@@ -6,8 +6,10 @@ const input_keys = [
   "secrets",
   "secrets_env",
   "prefix_prod",
+  "prefix_stag",
   "prefix_dev",
   "file_name_prod",
+  "file_name_stag",
   "file_name_dev",
   "overwrite_prod",
 ];
