@@ -1,5 +1,7 @@
-const { expect } = require("chai");
-const {
+// const { expect } = require("chai");
+
+import { expect } from "chai";
+import {
   DEFAULT_PREFIX_DEV,
   DEFAULT_PREFIX_STAG,
   DEFAULT_PREFIX_PROD,
@@ -9,7 +11,7 @@ const {
   main,
   parseSecrets,
   toEnvString,
-} = require("./action.js");
+} from "./action.js";
 
 const secrets = {
   __PROD__SECRET_KEY1: "aaa",

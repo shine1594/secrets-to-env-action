@@ -3,6 +3,7 @@
   "version": "1.6.1",
   "description": "Action to generate env files from github repository secret keys",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "mocha",
     "build": "ncc build index.js --license licenses.txt",

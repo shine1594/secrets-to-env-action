@@ -71,7 +71,7 @@ const main = ({
   return files;
 };
 
-module.exports = {
+export {
   DEFAULT_PREFIX_DEV,
   DEFAULT_PREFIX_STAG,
   DEFAULT_PREFIX_PROD,

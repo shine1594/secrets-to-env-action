@@ -1,6 +1,6 @@
-const core = require("@actions/core");
-const { promises: fs } = require("fs");
-const { main, makeSuccessMessage } = require("./action.js");
+import { promises as fs } from "fs";
+import core from "@actions/core";
+import { main, makeSuccessMessage } from "./action.js";
 
 const input_keys = [
   "secrets",
