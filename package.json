@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "mocha",
-    "build": "ncc build index.js --license licenses.txt",
+    "build": "ncc build index.js --minify --license licenses.txt",
     "deploy": "np --no-publish"
   },
   "repository": {
