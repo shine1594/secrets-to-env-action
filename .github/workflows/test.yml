@@ -1,0 +1,20 @@
+name: Test
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Secrets to env
+        uses: shine1594/secrets-to-env-action@master
+        with:
+          secrets: ${{ toJSON(secrets) }}
+          secrets_env: all
+          file_name_prod: my_env.txt
+      - name: Display my_env.txt
+        run: cat my_env.txt
