@@ -1,5 +1,3 @@
-// const { expect } = require("chai");
-
 import { expect } from "chai";
 import {
   DEFAULT_PREFIX_DEV,
